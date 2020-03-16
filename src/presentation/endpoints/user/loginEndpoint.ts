@@ -1,6 +1,6 @@
-import { LoginUseCase } from "../../business/usecase/loginUseCase"
+import { LoginUseCase } from "../../../business/usecase/user/loginUseCase"
 import {Request,Response} from 'express'
-import { UserDB } from "../../data/UserDB"
+import { UserDB } from "../../../data/UserDB"
 
 export const loginEndpoint = async(req: Request, res: Response) => {
     try{

@@ -1,6 +1,6 @@
-import { UserDB } from "../../data/UserDB";
+import { UserDB } from "../../../data/UserDB";
 import { v4 } from "uuid"
-import { User } from "../entities/User";
+import { User } from "../../entities/User";
 import * as bcrypt from "bcrypt"
 
 export class SignUpUC {

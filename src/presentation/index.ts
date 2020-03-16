@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
-import { loginEndpoint } from "./endpoints/loginEndpoint";
-import { signUpEndpoint } from "./endpoints/SignUp";
-import { getUserIfo } from "./endpoints/GetUserInfo";
+import { loginEndpoint } from "./endpoints/user/loginEndpoint";
+import { signUpEndpoint } from "./endpoints/user/SignUp";
+import { getUserIfo } from "./endpoints/user/GetUserInfo";
 
 const app = express();
 app.use(express.json());

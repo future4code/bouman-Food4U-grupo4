@@ -1,7 +1,7 @@
-import { GetUserInfoUC } from "../../business/usecase/GetUserInfoUC"
+import { GetUserInfoUC } from "../../../business/usecase/user/GetUserInfoUC"
 import {Request,Response} from 'express'
-import { UserDB } from "../../data/UserDB"
-import { JWTAuthentication } from "../../utils/JWTAuthentication"
+import { UserDB } from "../../../data/UserDB"
+import { JWTAuthentication } from "../../../utils/JWTAuthentication"
 
 export const getUserIfo = async(req: Request, res: Response) => {
     try{

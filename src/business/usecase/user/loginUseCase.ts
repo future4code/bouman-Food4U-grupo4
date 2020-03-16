@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
-import { UserDB } from '../../data/UserDB';
-import { JWTAuthentication } from '../../utils/JWTAuthentication';
+import { UserDB } from '../../../data/UserDB';
+import { JWTAuthentication } from '../../../utils/JWTAuthentication';
 
 export class LoginUseCase {
     constructor(private db: UserDB) { }
