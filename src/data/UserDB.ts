@@ -3,12 +3,13 @@ import { User } from "../business/entities/User";
 
 export class UserDB extends BaseDB {
     private usersTableName = "users"
+    private usersRelationsTableName = "users_relations"
 
     private mapDateToDbDate(input: string): string {
-        let day  = input.split("/")[0];
-        let month  = input.split("/")[1];
-        let year  = input.split("/")[2];
-        return year + '-' + ("0"+month).slice(-2) + '-' + ("0"+day).slice(-2);
+        let day = input.split("/")[0];
+        let month = input.split("/")[1];
+        let year = input.split("/")[2];
+        return year + '-' + ("0" + month).slice(-2) + '-' + ("0" + day).slice(-2);
     }
 
     public async createUser(user: User): Promise<void> {
@@ -58,6 +59,15 @@ export class UserDB extends BaseDB {
             user[0].password,
             user[0].birth_date
         )
+    }
+
+    public async createUserFollowRelation(followerId: string, followedId: string): Promise<void | undefined> {
+
+        await this.connection.insert({
+            followerId,
+            followedId
+        }).into(this.usersRelationsTableName)
+
     }
 
 }

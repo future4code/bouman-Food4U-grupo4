@@ -2,7 +2,9 @@ import express, { Request, Response } from "express";
 import { loginEndpoint } from "./endpoints/user/loginEndpoint";
 import { signUpEndpoint } from "./endpoints/user/SignUp";
 import { getUserIfo } from "./endpoints/user/GetUserInfo";
+import { followUser } from "./endpoints/user/FollowUser";
 import { createRecipeEndpoint } from "./endpoints/recipes/CreateRecipeEndpoint"
+
 
 const app = express();
 app.use(express.json());
@@ -10,6 +12,7 @@ app.use(express.json());
 app.post('/login', loginEndpoint )
 app.post("/signup", signUpEndpoint)
 app.get("/user", getUserIfo)
+app.post("/user/follow", followUser)
 app.post("/recipe", createRecipeEndpoint)
 
 export default app;
