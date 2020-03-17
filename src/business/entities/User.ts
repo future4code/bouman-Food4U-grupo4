@@ -5,7 +5,7 @@ export class User {
         private name: string,
         private email: string,
         private password: string,
-        private birth_date: Date,
+        private birth_date: string,
     ){}
 
     getId():string{
@@ -24,7 +24,7 @@ export class User {
         return this.name
     }
 
-    getBirthDate():Date{
+    getBirthDate():string{
         return this.birth_date
     }
 

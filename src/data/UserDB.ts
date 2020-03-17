@@ -4,6 +4,13 @@ import { User } from "../business/entities/User";
 export class UserDB extends BaseDB {
     private usersTableName = "users"
 
+    private mapDateToDbDate(input: string): string {
+        let day  = input.split("/")[0];
+        let month  = input.split("/")[1];
+        let year  = input.split("/")[2];
+        return year + '-' + ("0"+month).slice(-2) + '-' + ("0"+day).slice(-2);
+    }
+
     public async createUser(user: User): Promise<void> {
 
         await this.connection.insert({
@@ -11,7 +18,7 @@ export class UserDB extends BaseDB {
             id: user.getId(),
             name: user.getName(),
             email: user.getEmail(),
-            birth_date: user.getBirthDate(),
+            birth_date: this.mapDateToDbDate(user.getBirthDate()),
             password: user.getPassword()
 
         }).into(this.usersTableName)

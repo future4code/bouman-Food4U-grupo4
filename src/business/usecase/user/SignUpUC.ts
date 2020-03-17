@@ -39,7 +39,7 @@ interface SignUpInput {
     name: string
     email: string
     password: string
-    birth_date: Date
+    birth_date: string
 }
 
 interface SignUpOutput {

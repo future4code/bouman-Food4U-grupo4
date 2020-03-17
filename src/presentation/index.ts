@@ -11,3 +11,14 @@ app.post("/signup", signUpEndpoint)
 app.get("/user", getUserIfo)
 
 export default app;
+
+/*
+    RESPOSTA DESAFIOS
+
+    1) 
+        a) Foi bem dificil, o banco de dados recusou inserir na tabela a data de aniversário
+        após algumas pesquisas encontramos a solução. E no código tivemos que mudar entidade, usecase
+        e UserDB, acabou que afetou outras funcionalidades e tivemos que arrumar elas também.
+
+        b) É afetado já que a entidade de User é a mesma, tendo que passar esses dados no DB também.
+*/
