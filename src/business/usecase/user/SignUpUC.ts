@@ -15,8 +15,10 @@ export class SignUpUC {
 
             const newUser = new User(
                 id,
+                input.name,
                 input.email,
-                hashPassword
+                hashPassword,
+                input.birth_date
             )
 
             await this.db.createUser(newUser)
@@ -34,8 +36,10 @@ export class SignUpUC {
 }
 
 interface SignUpInput {
+    name: string
     email: string
     password: string
+    birth_date: Date
 }
 
 interface SignUpOutput {

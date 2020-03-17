@@ -9,7 +9,9 @@ export class UserDB extends BaseDB {
         await this.connection.insert({
 
             id: user.getId(),
+            name: user.getName(),
             email: user.getEmail(),
+            birth_date: user.getBirthDate(),
             password: user.getPassword()
 
         }).into(this.usersTableName)
@@ -26,8 +28,10 @@ export class UserDB extends BaseDB {
 
         return new User(
             user[0].id,
+            user[0].name,
             user[0].email,
-            user[0].password
+            user[0].password,
+            user[0].birth_date
         )
     }
 
@@ -42,8 +46,10 @@ export class UserDB extends BaseDB {
 
         return new User(
             user[0].id,
+            user[0].name,
             user[0].email,
-            user[0].password
+            user[0].password,
+            user[0].birth_date
         )
     }
 
