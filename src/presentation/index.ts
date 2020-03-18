@@ -4,6 +4,7 @@ import { signUpEndpoint } from "./endpoints/user/SignUp";
 import { getUserIfo } from "./endpoints/user/GetUserInfo";
 import { followUser } from "./endpoints/user/FollowUser";
 import { createRecipeEndpoint } from "./endpoints/recipes/CreateRecipeEndpoint"
+import { getRecipesFeed } from "./endpoints/recipes/GetRecipesFeed";
 
 
 const app = express();
@@ -14,6 +15,7 @@ app.post("/signup", signUpEndpoint)
 app.get("/user", getUserIfo)
 app.post("/user/follow", followUser)
 app.post("/recipe", createRecipeEndpoint)
+app.get("/user/feed", getRecipesFeed)
 
 export default app;
 

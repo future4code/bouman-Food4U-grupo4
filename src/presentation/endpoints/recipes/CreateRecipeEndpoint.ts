@@ -7,18 +7,17 @@ export const createRecipeEndpoint = async(req: Request, res: Response) => {
     try{
 
         const jwtAuth = new JWTAuthentication()
-        const id = jwtAuth.verifyToken(req.headers.auth as string)
+        const userId = jwtAuth.verifyToken(req.headers.auth as string)
 
-        const recipeDB =  new RecipeDB
-        const useCase = new CreateRecipeUC(recipeDB)
+        const createRecipeUC = new CreateRecipeUC(new RecipeDB())
 
         const input = {
-            userId: '',
             title: req.body.title,
-            description: req.body.description
+            description: req.body.description,
+            userId
         }
 
-        const result = await useCase.execute(input)
+        const result = await createRecipeUC.execute(input)
 
         res.status(200).send(result)
 
