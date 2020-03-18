@@ -3,7 +3,7 @@ export class Recipe{
         private id: string,
         private title: string,
         private description: string,
-        private creationDate: Date,
+        private postDate: Date,
         private userId: string,
     ){}
 
@@ -19,8 +19,8 @@ export class Recipe{
         return this.description
     }
 
-    getCreationDate(): Date{
-        return this.creationDate
+    getPostDate(): Date{
+        return this.postDate
     }
 
     getUserId(): string{

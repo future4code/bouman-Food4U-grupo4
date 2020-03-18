@@ -16,7 +16,7 @@ export class FollowUserUC {
 
             console.log(err)
             if(err.errno === 1062){
-                return { message: "user is already being followed" }
+                return { message: "user is already followed" }
             }
             return { message: "user not found" }
 
