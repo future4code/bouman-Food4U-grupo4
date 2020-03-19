@@ -5,6 +5,7 @@ import { getUserIfo } from "./endpoints/user/GetUserInfo";
 import { followUser } from "./endpoints/user/FollowUser";
 import { createRecipeEndpoint } from "./endpoints/recipes/CreateRecipeEndpoint"
 import { getRecipesFeed } from "./endpoints/recipes/GetRecipesFeed";
+import { updatePassword } from "./endpoints/user/UpdatePassword";
 
 
 const app = express();
@@ -16,6 +17,7 @@ app.get("/user", getUserIfo)
 app.post("/user/follow", followUser)
 app.post("/recipe", createRecipeEndpoint)
 app.get("/user/feed", getRecipesFeed)
+app.post("/user/update/password", updatePassword)
 
 export default app;
 
