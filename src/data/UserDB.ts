@@ -70,4 +70,18 @@ export class UserDB extends BaseDB {
 
     }
 
+    public async updatePassword(userId: string, newPassword: string): Promise<void> {
+        
+        try{
+        await this.connection(this.usersTableName)
+            .where('id', '=', userId)
+            .update({
+                password: newPassword
+            })
+        }catch(err){
+            console.log(err)
+            throw err
+        }
+    }
+
 }
