@@ -1,6 +1,5 @@
 import { UserDB } from "../../../data/UserDB";
 import * as bcrypt from 'bcrypt';
-import { JWTAuthentication } from "../../../utils/JWTAuthentication";
 import moment from "moment";
 
 export class UpdatePasswordUC {

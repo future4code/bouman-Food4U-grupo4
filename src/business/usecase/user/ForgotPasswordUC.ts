@@ -1,17 +1,7 @@
 import { UserDB } from "../../../data/UserDB";
 import generator from 'generate-password';
-const nodemailer = require('nodemailer');
-
-const transporter = nodemailer.createTransport({
-    host: "luanbonetto42@gmail.com",
-    port: 25,
-    secure: false, // true for 465, false for other ports
-    auth: {
-        user: "no-reply@diegopinho.com",
-        pass: "senhaqualquerdeteste"
-    },
-    tls: { rejectUnauthorized: false }
-});
+import { Nodemailer } from "../../../utils/Nodemailer";
+import * as bcrypt from 'bcrypt';
 
 export class ForgotPasswordUC {
 
@@ -27,23 +17,16 @@ export class ForgotPasswordUC {
         const newPassword = generator.generate({
             length: 10,
             numbers: true
-        })
+        })     
 
-        const mailOptions = {
-            from: 'no-reply@diegopinho.com',
-            to: 'camdyn8@creationuq.com',
-            subject: 'Atualizando Senha',
-            text: 'Sua nova senha é ${newPassword}'
-        };
+        const nodemailer = new Nodemailer()
 
-        transporter.sendMail(mailOptions, function(error:Error, info:any){
-            if (error) {
-              console.log(error);
-            } else {
-              console.log('Email enviado: ' + info.response);
-            }
-          });
+        nodemailer.sendMailPassword(user.getEmail(), user.getName(), newPassword)
 
+        const hashPassword = await bcrypt.hash(newPassword, 10)
+        this.db.updatePassword(user.getId(), hashPassword)
+
+        return { message: "Password sent and updated successfully" }
     }
 
 }
@@ -51,4 +34,9 @@ export class ForgotPasswordUC {
 export interface ForgotPasswordInput {
     userEmail: string
 }
+
+export interface ForgotPasswordOutput {
+    message: string
+}
+
 
