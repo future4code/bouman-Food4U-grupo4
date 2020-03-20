@@ -129,8 +129,6 @@ export class UserDB extends BaseDB {
 
     }
 
-}
-
     public async updateInfoUser(userId: string, newName: string, newEmail: string, newBithDate: string): Promise<void>{
         try{
             await this.connection(this.usersTableName)
