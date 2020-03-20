@@ -33,3 +33,5 @@ export default app;
 
         b) É afetado já que a entidade de User é a mesma, tendo que passar esses dados no DB também.
 */
+
+
