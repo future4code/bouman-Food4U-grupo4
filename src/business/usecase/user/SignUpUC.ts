@@ -2,6 +2,8 @@ import { UserDB } from "../../../data/UserDB";
 import { v4 } from "uuid"
 import { User } from "../../entities/User";
 import * as bcrypt from "bcrypt"
+import moment from "moment"
+import 'moment/locale/pt-br';
 
 export class SignUpUC {
     constructor(private db: UserDB) { }
@@ -22,6 +24,11 @@ export class SignUpUC {
             )
 
             await this.db.createUser(newUser)
+            
+            const timestamp = new Date().getTime()
+            const exchangeTime = moment().format('L, LTS')
+
+            await this.db.createPasswordLog(id, timestamp, exchangeTime )
             
             return({
                 message: "User created successfully"
