@@ -4,6 +4,7 @@ import { ForgotPasswordUC } from '../../../business/usecase/user/ForgotPasswordU
 
 export const forgotPassword = async (req: Request, res: Response) => {
     try {
+
         const forgotPasswordUC = new ForgotPasswordUC(new UserDB())
         const result = await forgotPasswordUC.execute({
             userEmail: req.body.userEmail
