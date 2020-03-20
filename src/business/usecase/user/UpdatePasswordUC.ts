@@ -1,5 +1,7 @@
 import { UserDB } from "../../../data/UserDB";
 import * as bcrypt from 'bcrypt';
+import { JWTAuthentication } from "../../../utils/JWTAuthentication";
+import moment from "moment";
 
 export class UpdatePasswordUC {
     constructor(private db: UserDB) { }
@@ -18,6 +20,27 @@ export class UpdatePasswordUC {
             if (!isPasswordCorrect) {
                 throw new Error('incorrect password')
             }
+
+            
+            const passwordLog = await this.db.getPaswordLogByUserId(user.getId())
+            const timestampLog = passwordLog.getTimestamp()
+            const currentTime = new Date().getTime()
+            const oneOur = 1000*60*60
+            const calculateTimeDifference = (currentTime - timestampLog)/oneOur
+            
+            // console.log(calculateTimeDifference)
+            // console.log(timestampLog)
+            // console.log(currentTime)
+
+            if(calculateTimeDifference < 2){
+                return { 
+                    message: `Password change denied, it is only possible to change the password two hours after the last change. Your last password change was ${passwordLog.getExchangeTime()}`
+                }
+            }
+
+            const newTimestamp = new Date().getTime()
+            const exchangeTime = moment().format('L, LTS')
+            await this.db.updatePasswordLog(user.getId(), newTimestamp, exchangeTime)
 
             const hashPassword = await bcrypt.hash(input.newPassword, 10)
             await this.db.updatePassword(input.userId, hashPassword)
