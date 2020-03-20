@@ -23,4 +23,6 @@ export const updateInfos = async(req: Request, res: Response) => {
             message: err.message
         })
     }
-}
+
+//apenas teste
+
