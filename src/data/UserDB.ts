@@ -86,6 +86,7 @@ export class UserDB extends BaseDB {
         }
     }
 
+
     public async createPasswordLog(userId: string, timestamp: number, exchangeTime: string): Promise<void> {
 
         await this.connection.insert({
@@ -129,3 +130,21 @@ export class UserDB extends BaseDB {
     }
 
 }
+
+    public async updateInfoUser(userId: string, newName: string, newEmail: string, newBithDate: string): Promise<void>{
+        try{
+            await this.connection(this.usersTableName)
+            .where('id', '=', userId)
+            .update({
+                name: newName,
+                email: newEmail,
+                birth_date: newBithDate
+            })
+        }catch(err){
+            console.log(err)
+            throw err
+        }
+    }
+
+}
+
