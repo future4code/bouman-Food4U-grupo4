@@ -6,9 +6,9 @@ export class Nodemailer {
     private SECRET_PASSWORD: string
 
     constructor() {
-        this.SECRET_HOST = "smtp.mailtrap.io"
-        this.SECRET_USER = "fd1c67c55bae01"
-        this.SECRET_PASSWORD = "dbd2fae15ec92b"
+        this.SECRET_HOST = "host aqui"
+        this.SECRET_USER = "usuario aqui"
+        this.SECRET_PASSWORD = "senha aqui"
     }
 
     public sendMailPassword(userEmail: string, userName: string, newPassword: string) {

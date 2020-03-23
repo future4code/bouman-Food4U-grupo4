@@ -27,10 +27,6 @@ export class UpdatePasswordUC {
             const oneOur = 1000*60*60
             const calculateTimeDifference = (currentTime - timestampLog)/oneOur
             
-            // console.log(calculateTimeDifference)
-            // console.log(timestampLog)
-            // console.log(currentTime)
-
             if(calculateTimeDifference < 2){
                 return { 
                     message: `Password change denied, it is only possible to change the password two hours after the last change. Your last password change was ${passwordLog.getExchangeTime()}`
